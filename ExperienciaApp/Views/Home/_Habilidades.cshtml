@@ -1,0 +1,22 @@
+﻿@if (Model.Habilidades is not null)
+{
+    <h2>Nuestras habilidades</h2>
+    <table class="table">
+        <caption>List of users</caption>
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var habilidad in @Model.Habilidades)
+        {
+            <tr>
+                <th scope="row">#</th>
+                <td>@habilidad.Nombre</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

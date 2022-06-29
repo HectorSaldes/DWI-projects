@@ -1,0 +1,39 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (Model.Proyectos is not null)
+{
+    <h2>Nuestros proyectos</h2>
+    <table class="table">
+        <caption>List of projects</caption>
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Enlace</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var proyecto in @Model.Proyectos)
+        {
+            <tr>
+                <th scope="row">#</th>
+                <td><img src="~/img/@proyecto.Imagen" alt="" width="100"></td>
+                <td>@proyecto.Nombre</td>
+                <td>@proyecto.Descripcion</td>
+                <td><a href="@proyecto.Enlace" target="_blank">@proyecto.Enlace</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<partial name="_Habilidades"/>

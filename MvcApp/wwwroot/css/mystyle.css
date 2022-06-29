@@ -1,0 +1,8 @@
+.text-color{
+    color: red;
+}
+/* Debemos importarlo en _Layout.cshtml */
+
+.text-carrera{
+    color: goldenrod;
+}
