@@ -5,6 +5,8 @@ namespace ExperienciaApp.Models
 {
     public class Contacto : IValidatableObject
     {
+        public int Id { get; set; }
+
         [DisplayName(displayName: "Nombre de la persona")] // se muestra en el label este nombre
         [Required(ErrorMessage = "El {0} es obligatorio")]
         [StringLength(maximumLength: 50, MinimumLength = 2, ErrorMessage = "El {0} debe estar entre 2 y 50 letras")]
@@ -25,7 +27,7 @@ namespace ExperienciaApp.Models
         [StringLength(maximumLength: 50, MinimumLength = 2)]
         [RegularExpression("^[0-9]+")]
         public string? Telefono { get; set; }
-
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Nombre != null && Nombre.Length > 0)
@@ -39,19 +41,4 @@ namespace ExperienciaApp.Models
         }
     }
 }
-
-/* SQL SERVER
  
-USE test;
-CREATE TABLE Contacto(
- Id INT IDENTITY PRIMARY KEY,
- Nombre NVARCHAR(50) NOT NULL,
- CorreoElectronico NVARCHAR(50) NOT NULL,
- Telefono NVARCHAR(10) NOT NULL,
- Edad INT
-); GO
-
-
- *
- * 
- */

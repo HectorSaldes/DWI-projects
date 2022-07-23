@@ -55,19 +55,45 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Contacto(Contacto contacto)
     {
-        if (!ModelState.IsValid)
-            return View();
-        else
-        {
-            await _contactoRepository.Registrar(contacto);
-            return RedirectToAction("Listar");
-        }
+        var listarContactos = await _contactoRepository.Listar();
+        var modelo = new ContactoViewModel() { Contactos = listarContactos };
+        if (!ModelState.IsValid) return View(modelo);
+        await _contactoRepository.Registrar(contacto);
+        return RedirectToAction("Listar");
     }
 
     public async Task<IActionResult> Listar()
     {
         var listaContactos = await _contactoRepository.Listar();
         return View(listaContactos);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Editar(int id)
+    {
+        var contacto = await _contactoRepository.BuscarPorId(id);
+        if (contacto is null) return RedirectToAction("Index");
+
+
+        return View(contacto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Editar(Contacto contacto)
+    {
+        var existeContacto = await _contactoRepository.BuscarPorId(contacto.Id);
+        if (existeContacto is null) return RedirectToAction("Index");
+        await _contactoRepository.Actualizar(contacto);
+        return RedirectToAction("Listar");
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Eliminar(int id)
+    {
+        var existeContacto = await _contactoRepository.BuscarPorId(id);
+        if (existeContacto is null) return RedirectToAction("Index");
+        await _contactoRepository.Eliminar(id);
+        return RedirectToAction("Listar");
     }
 
 
@@ -93,7 +119,7 @@ public class HomeController : Controller
         };
     }
 
-// No se usa porque ya esta en el repository
+    // No se usa porque ya esta en el repository
     private List<Habilidad> ObtenerHabilidades()
     {
         return new List<Habilidad>()

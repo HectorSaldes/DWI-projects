@@ -1,0 +1,39 @@
+﻿@model Contacto
+
+@{
+    ViewData["Title"] = "Editar contacto";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="Contacto" asp-action="Actualizar" method="post">
+    <input type="text" hidden asp-for="Id"/>
+    <div class="form-group">
+        <label asp-for="Nombre"></label>
+        <input type="text" class="form-control" asp-for="Nombre" placeholder="Ej. Hector Saldaña">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CorreoElectronico"></label>
+        <input type="email" class="form-control" asp-for="CorreoElectronico" placeholder="hector@gmail.com">
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Telefono"></label>
+        <input type="tel" class="form-control" asp-for="Telefono" placeholder="7772003900">
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Edad"></label>
+        <input type="number" class="form-control" asp-for="Edad" placeholder="21">
+        <span asp-validation-for="Edad" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-5">
+        <button type="submit" class="col-12 btn btn-outline-warning">Actualizar</button>
+    </div>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

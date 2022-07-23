@@ -4,6 +4,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+ <a class="btn btn-success" asp-action="Contacto">Crear nuevo contacto</a>
 <table class="table">
     <caption>List of users</caption>
     <thead>
@@ -12,6 +13,7 @@
         <th scope="col">Edad</th>
         <th scope="col">Correo electrónico</th>
         <th scope="col">Teléfono</th>
+        <th colspan="2" scope="col">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +24,12 @@
             <td>@persona.Edad</td>
             <td>@persona.CorreoElectronico</td>
             <td>@persona.Telefono</td>
+            <td>
+                <a class="btn btn-primary" asp-action="Editar" asp-route-id="@persona.Id">Editar</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@persona.Id">Eliminar</a>
+            </td>
         </tr>
     }
     </tbody>

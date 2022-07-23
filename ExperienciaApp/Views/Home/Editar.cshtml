@@ -1,0 +1,43 @@
+﻿@model Contacto
+
+@{
+    ViewData["Title"] = "Editar Contacto";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@* Muestra las validaciones en general *@
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-controller="Home" asp-action="Editar" method="post">
+    <input type="number" hidden asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Nombre" for="Nombre"></label>
+        <input asp-for="Nombre" type="text" class="form-control" id="Nombre" placeholder="Ej. Hector Saldaña" name="Nombre"/>
+        @* Muestra las validaciones a nivel campo *@
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="CorreoElectronico" for="CorreoElectronico"></label>
+        <input asp-for="CorreoElectronico" type="email" class="form-control" id="CorreoElectronico" placeholder="Ej. hectorsa355@gmail.com" name="CorreoElectronico"/>
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Edad" for="Edad"></label>
+        <input asp-for="Edad" type="number" class="form-control" id="Edad" placeholder="Ej. 21" name="Edad"/>
+        <span asp-validation-for="Edad" class="text-danger"></span>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Telefono" for="Telefono"></label>
+        <input asp-for="Telefono" type="tel" class="form-control" id="Telefono" placeholder="Ej. 7772003900" name="Telefono">
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+    <div class="form-group my-3">
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}
