@@ -1,0 +1,43 @@
+﻿@model ExperienciaLaboralViewModel
+@{
+    ViewData["Title"] = "Editar experiencia laboral";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-controller="ExperienciaLaboral" asp-action="Actualizar" method="post">
+    <div class="form-group">
+        <label asp-for="Cargo"></label>
+        <input type="text" class="form-control" asp-for="Cargo" placeholder="Ej. Desarrollador...">
+        <span asp-validation-for="Cargo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NombreEmpresa"></label>
+        <input type="text" class="form-control" asp-for="NombreEmpresa" placeholder="Ej. ThePandaDevs...">
+        <span asp-validation-for="NombreEmpresa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descripcion"></label>
+        <input type="text" class="form-control" asp-for="Descripcion" placeholder="Ej. Realizo prácticas como...">
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TipoEmpleoId">Tipo de empleo</label>
+        <select asp-for="TipoEmpleoId" asp-items="Model.TiposEmpleos" type="text" class="form-select"></select>
+        <span asp-validation-for="TipoEmpleoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+     <label asp-for="EntidadFederativaId">Entidad federativa</label>
+        <select asp-for="EntidadFederativaId" asp-items="Model.EntidadesFederativas" type="text" class="form-select"></select>
+        <span asp-validation-for="EntidadFederativaId" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-5">
+        <button type="submit" class="col-12 btn btn-outline-success">Enviar</button>
+    </div>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

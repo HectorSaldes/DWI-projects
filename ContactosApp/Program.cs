@@ -12,7 +12,7 @@ builder.Services.AddTransient<IContactoRepository, ContactoRepository>();
 builder.Services.AddTransient<IEntidadFederativaRepository, EntidadFederativaRepository>();
 builder.Services.AddTransient<IExperienciaLaboralRepository, ExperienciaLaboralRepository>();
 builder.Services.AddTransient<ITipoEmpleoRepository, TipoEmpleoRepository>();
-
+builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
 

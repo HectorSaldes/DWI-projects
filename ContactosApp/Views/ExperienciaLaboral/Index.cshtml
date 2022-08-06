@@ -1,0 +1,109 @@
+﻿@model ExperienciaLaboralViewModel
+@{
+    ViewData["Title"] = "Lista de experiencias laborales";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<button id="myBtnModal" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <ion-icon name="add-outline"></ion-icon>
+    Crear un nueva experiencia laboral
+</button>
+
+@if (Model.ExperenciasLaborales is not null)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <td>Cargo</td>
+            <td>Nombre de la empresa</td>
+            <td>Tipo empleo</td>
+            <td>Entidad federativa</td>
+            <td colspan="2">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var exp in Model.ExperenciasLaborales)
+        {
+            <tr>
+                <td>@exp.Cargo</td>
+                <td>@exp.NombreEmpresa</td>
+                <td>@exp.TipoEmpleo</td>
+                <td>@exp.EntidadFederativa</td>
+                <td>
+                    <a class="btn btn-outline-warning" asp-action="Actualizar" asp-route-id="@exp.Id">
+                         <ion-icon name="pencil-outline"></ion-icon>
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="Eliminar" asp-route-id="@exp.Id">
+                        <ion-icon name="trash-outline"></ion-icon>
+                        Eliminar
+                    </a>
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No hay registros en la tabla</h1>
+}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva experiencia laboral</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <form asp-controller="ExperienciaLaboral" asp-action="Registrar" method="post">
+                    <div class="form-group">
+                        <label asp-for="Cargo"></label>
+                        <input type="text" class="form-control" asp-for="Cargo" placeholder="Ej. Desarrollador...">
+                        <span asp-validation-for="Cargo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NombreEmpresa"></label>
+                        <input type="text" class="form-control" asp-for="NombreEmpresa" placeholder="Ej. ThePandaDevs...">
+                        <span asp-validation-for="NombreEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion"></label>
+                        <input type="text"  class="form-control" asp-for="Descripcion" placeholder="Ej. Realizo prácticas como...">
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoEmpleoId">Tipo de empleo</label>
+                        <select asp-for="TipoEmpleoId" asp-items="Model.TiposEmpleos" type="text" class="form-select"></select>
+                        <span asp-validation-for="TipoEmpleoId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EntidadFederativaId">Entidad federativa</label>
+                        <select asp-for="EntidadFederativaId" asp-items="Model.EntidadesFederativas" type="text" class="form-select"></select>
+                        <span asp-validation-for="EntidadFederativaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-5">
+                        <button type="submit" class="col-12 btn btn-outline-success">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+@section Scripts
+{
+    @if (Model.FlagModalError)
+    {
+        <script>document.querySelector("#myBtnModal").click()</script>
+    }
+}

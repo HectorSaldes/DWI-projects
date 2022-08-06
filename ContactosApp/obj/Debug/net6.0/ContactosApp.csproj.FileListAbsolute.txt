@@ -116,3 +116,5 @@ F:\Desarrollo Web Integral\ContactosApp\obj\Debug\net6.0\refint\ContactosApp.dll
 F:\Desarrollo Web Integral\ContactosApp\obj\Debug\net6.0\ContactosApp.pdb
 F:\Desarrollo Web Integral\ContactosApp\obj\Debug\net6.0\ContactosApp.genruntimeconfig.cache
 F:\Desarrollo Web Integral\ContactosApp\obj\Debug\net6.0\ref\ContactosApp.dll
+F:\Desarrollo Web Integral\ContactosApp\bin\Debug\net6.0\AutoMapper.dll
+F:\Desarrollo Web Integral\ContactosApp\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
